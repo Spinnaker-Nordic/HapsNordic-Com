@@ -1,0 +1,9 @@
+{% if settings.show_upsell %}
+  <div
+    class="cart-upsell cart-upsell__mobile invisible rounded-[10px] bg-white py-5 px-4 opacity-0 duration-200 lg:hidden"
+    data-component="cart-upsell"
+  >
+    <h4 class="mb-3 text-lg font-bold">{{ settings.upsell_heading }}</h4>
+    <div class="cart-upsell__body max-lg:overflow-x-auto" data-scrollable-upsell></div>
+  </div>
+{% endif %}

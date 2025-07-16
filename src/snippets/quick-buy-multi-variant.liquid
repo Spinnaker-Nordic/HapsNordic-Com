@@ -1,0 +1,115 @@
+<div
+  class="multi-variant-quick-buy invisible fixed top-0 left-0 z-[11] h-full w-full overflow-y-auto rounded-sm bg-[#0000001c] opacity-0 duration-200 max-lg:px-6 max-lg:py-[100px] lg:absolute"
+  product-id="{{ product.id }}"
+  onmouseleave="closeMultiVariantQuickBuy('{{ product.id }}')"
+>
+  <div class="color-scheme__{{settings.multi_variant_scheme}} relative mx-auto flex h-full w-full items-end rounded-sm max-lg:max-h-[500px] max-lg:max-w-[500px]">
+    <div
+      class="absolute top-1 right-1 h-5 w-5 cursor-pointer"
+      onclick="closeMultiVariantQuickBuy('{{ product.id }}')"
+    >
+      {% render 'icons', icon: 'xmark' %}
+    </div>
+
+    <div class="relative flex flex-wrap gap-2 p-4">
+      {%- for variant in product.variants -%}
+        <div
+          data-behavior="{{ settings.quick_add_to_cart_behavior }}"
+          data-component="quick-buy"
+        >
+          {% form 'product', product %}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ variant.id }}"
+            >
+
+            <button
+              type="submit"
+              class="
+                button button--primary button--multi-variant rounded-sm p-2 flex items-center justify-center
+                {% unless variant.available %} pointer-events-none opacity-50 line-through {% endunless %}
+              "
+            >
+              <span class="text-base font-normal !leading-[1]">
+                <div data-default>
+                  {% assign hideOption1 = false %}
+                  {% assign hideOption2 = false %}
+                  {% assign hideOption3 = false %}
+
+                  {% for option in product.options_with_values -%}
+                    {% if forloop.index == 1 %}
+                      {% if option.name == settings.hide_option_1
+                        or option.name == settings.hide_option_2
+                        or option.name == settings.hide_option_3
+                      %}
+                        {% assign hideOption1 = true %}
+                      {% endif %}
+                    {% endif %}
+                    {% if forloop.index == 2 %}
+                      {% if option.name == settings.hide_option_1
+                        or option.name == settings.hide_option_2
+                        or option.name == settings.hide_option_3
+                      %}
+                        {% assign hideOption2 = true %}
+                      {% endif %}
+                    {% endif %}
+                    {% if forloop.index == 3 %}
+                      {% if option.name == settings.hide_option_1
+                        or option.name == settings.hide_option_2
+                        or option.name == settings.hide_option_3
+                      %}
+                        {% assign hideOption3 = true %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% unless hideOption1 %}
+                    {{ variant.option1 }}
+                  {% endunless %}
+                  {% unless hideOption2 %}
+                    {{ variant.option2 }}
+                  {% endunless %}
+                  {% unless hideOption3 %}
+                    {{ variant.option3 }}
+                  {% endunless %}
+                </div>
+
+                {% if settings.quick_add_to_cart_behavior == 'inline' %}
+                  <div data-loading hidden class="mx-auto w-6 animate-spin">
+                    {% render 'icons', icon: 'rotate' %}
+                  </div>
+
+                  <div class="mx-auto w-6" data-success hidden>
+                    {% render 'icons', icon: 'success' %}
+                  </div>
+                {% endif %}
+              </span>
+            </button>
+          {% endform %}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<div
+  class="multi-variant-quick-buy__trigger absolute bottom-0 {% if settings.quick_add_to_cart_position == "left" %} left-0 {% else %} right-0 {% endif %} z-10 h-fit w-fit p-3"
+>
+  <button
+    class="button button--secondary rounded-sm p-2"
+    onmouseover="openMultiVariantQuickBuy('{{ product.id }}')"
+  >
+    <span class="block h-6 w-6">
+      <div>
+        {% render 'icons', icon: settings.cart_icon %}
+      </div>
+    </span>
+  </button>
+</div>
+
+<style>
+  .multi-variant-quick-buy.active + div {
+    display: none;
+  }
+</style>

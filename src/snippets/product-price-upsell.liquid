@@ -1,0 +1,8 @@
+{%- assign variant = product.selected_or_first_available_variant | default: product.variants[0] -%}
+
+<div
+  class="upsell-variant-price mb-3 flex items-center gap-2 text-sm font-bold"
+  product-id="{{ product.id }}"
+>
+  {{ variant.price | money }}
+</div>

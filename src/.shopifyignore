@@ -1,0 +1,4 @@
+templates/*.json
+sections/*.json
+config/settings_data.json
+/(locales\/)[a-zA-Z]+(-[A-Z]+)?(.json)/

@@ -1,0 +1,40 @@
+<div id="retailerMap" class="retailer-map"></div>
+
+<style>
+  .retailer-map {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 36px;
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="g"><feColorMatrix type="matrix" values="0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0 0 0 1 0"/></filter></svg>#g');
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayScale=1);
+  }
+  .store-locator-modal__main {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 12px;
+  }
+  .store-locator-modal__left h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .store-locator-modal__left p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .store-locator-modal__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+</style>
+
+<script
+  async
+  src="https://maps.googleapis.com/maps/api/js?key={{settings.google_map_key}}&loading=async&callback=initMap"
+></script>

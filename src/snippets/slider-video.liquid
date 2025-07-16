@@ -1,0 +1,144 @@
+{%- liquid
+  assign videoAttributes = ''
+  assign placeholderClasses = 'placeholder-svg placeholder'
+  assign videoAttributes = 'autoplay muted loop playsinline'
+-%}
+
+{%- liquid
+  capture classes
+    case section.settings.desktop_height
+      when 'small'
+        echo 'lg:h-[30vh] fullscreen '
+      when 'medium'
+        echo 'lg:h-[50vh] fullscreen '
+      when 'large'
+        echo 'lg:h-[75vh] fullscreen '
+      when 'fullscreen'
+        echo 'lg:h-[var(--fullscreen-height)] lg:fullscreen '
+    endcase
+
+    case section.settings.mobile_height
+      when 'small'
+        echo 'max-lg:h-[30vh] max-lg:fullscreen '
+      when 'medium'
+        echo 'max-lg:h-[50vh] max-lg:fullscreen '
+      when 'large'
+        echo 'max-lg:h-[75vh] max-lg:fullscreen '
+      when 'fullscreen'
+        echo 'max-lg:h-[var(--fullscreen-height)] max-lg:fullscreen '
+    endcase
+  endcapture
+-%}
+
+{% assign this = block.settings %}
+
+<div
+  class="swiper-slide w-full flex-shrink-0"
+  style="--overlay-color: 0 0 0 / {{ this.overlay_opacity | divided_by: 100.0 }}"
+>
+  {%- capture slide -%}
+      <div
+        class="video bg-primary-bg color-scheme__{{ block.settings.color_scheme }} {{- classes -}} w-full absolute h-full"
+        data-component="video"
+      >
+        {%- liquid
+          case section.settings.mobile_height
+            when 'small'
+              assign mobileVideoAspect = '30vh'
+            when 'medium'
+              assign mobileVideoAspect = '50vh'
+            when 'large'
+              assign mobileVideoAspect = '75vh'
+            when 'fullscreen'
+              assign mobileVideoAspect = 'var(--fullscreen-height)'
+          endcase
+        -%}
+        <div
+          class="aspect lg:hidden"
+          style="padding-top: {{ mobileVideoAspect }};"
+        >
+          {% if block.settings.video_mobile != blank %}
+            {% assign poster = block.settings.video_mobile.preview_image.src | image_url %}
+            <video {{ videoAttributes }} poster="{{ poster }}" fetchpriority="high" data-mobile>
+              <source
+                data-src="{{ block.settings.video_mobile.sources[1].url }}"
+                type="{{ block.settings.video_mobile.sources[1].mime_type }}"
+              >
+            </video>
+          {% else %}
+            {{ 'hero-apparel-3' | placeholder_svg_tag: placeholderClasses }}
+          {% endif %}
+        </div>
+      
+        {%- liquid
+          case section.settings.desktop_height
+            when 'small'
+              assign desktopVideoAspect = '30vh'
+            when 'medium'
+              assign desktopVideoAspect = '50vh'
+            when 'large'
+              assign desktopVideoAspect = '75vh'
+            when 'fullscreen'
+              assign desktopVideoAspect = 'var(--fullscreen-height)'
+          endcase
+        -%}
+        <div
+          class="aspect hidden lg:block"
+          style="padding-top: {{ desktopVideoAspect }};"
+        >
+          {% if block.settings.video_desktop != blank %}
+            {% assign poster = block.settings.video_desktop.preview_image.src | image_url %}
+            <video {{ videoAttributes }} poster="{{ poster }}" fetchpriority="high" data-desktop>
+              <source
+                data-src="{{ block.settings.video_desktop.sources[1].url }}"
+                type="{{ block.settings.video_desktop.sources[1].mime_type }}"
+              >
+            </video>
+          {% else %}
+            {{ 'hero-apparel-3' | placeholder_svg_tag: placeholderClasses }}
+          {% endif %}
+        </div>
+       </div>
+
+        <div class="slideshow--content {{ this.mobile_position }} {{ this.desktop_position }} ">
+          {% if this.sub_heading != blank %}                
+            <p>
+              {{ this.sub_heading }}
+            </p>
+          {% endif %}
+          {% if this.heading != blank %}                
+            {% if this.heading_size == 'h1' %}             
+              <h1 class="{{ this.heading_size }} font-bold mt-0 mb-4">
+                {{ this.heading }}
+              </h1>
+            {% else %}
+              <p class="{{ this.heading_size }} font-bold mt-0 mb-4">
+                {{ this.heading }}
+              </p>
+            {% endif %}
+          {% endif %}
+          {% if this.paragraph != blank %}                
+            <div class="rte pb-4">
+              {{ this.paragraph }}
+            </div>
+          {% endif %}
+          
+          {% render 'slideshow-button', this: this %}
+        </div>
+    {%- endcapture -%}
+
+  {% if this.button_text == blank and this.button_url != blank %}
+    <a
+      href="{{ this.button_url }}"
+      class="slideshow--slide color-scheme__{{ this.color_scheme }} text-secondary-text {{ classes }} "
+    >
+      {{ slide }}
+    </a>
+  {% else %}
+    <div
+      class="slideshow--slide color-scheme__{{ this.color_scheme }} text-secondary-text {{ classes }} "
+    >
+      {{ slide }}
+    </div>
+  {% endif %}
+</div>

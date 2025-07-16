@@ -1,0 +1,36 @@
+<script>
+  function collectionBackInStockOpen(productId) {
+    for (const oneElement of document.querySelectorAll('.collection-back-in-stock-modal')) {
+      oneElement.classList.add('hidden');
+    }
+    if (document.querySelector(`.collection-back-in-stock-modal[product-id="${productId}"]`)) {
+      document
+        .querySelector(`.collection-back-in-stock-modal[product-id="${productId}"]`)
+        .classList.remove('hidden');
+    }
+  }
+
+  function openMultiVariantQuickBuy(productId) {
+    for (const oneElement of document.querySelectorAll('.multi-variant-quick-buy')) {
+      oneElement.classList.add('opacity-0', 'invisible');
+    }
+    if (document.querySelector(`.multi-variant-quick-buy[product-id="${productId}"]`)) {
+      document
+        .querySelector(`.multi-variant-quick-buy[product-id="${productId}"]`)
+        .classList.remove('opacity-0', 'invisible');
+      document
+        .querySelector(`.multi-variant-quick-buy[product-id="${productId}"]`)
+        .classList.add('active');
+    }
+  }
+  function closeMultiVariantQuickBuy(productId) {
+    if (document.querySelector(`.multi-variant-quick-buy[product-id="${productId}"]`)) {
+      document
+        .querySelector(`.multi-variant-quick-buy[product-id="${productId}"]`)
+        .classList.add('opacity-0', 'invisible');
+      document
+        .querySelector(`.multi-variant-quick-buy[product-id="${productId}"]`)
+        .classList.remove('active');
+    }
+  }
+</script>

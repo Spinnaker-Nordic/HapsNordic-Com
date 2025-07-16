@@ -1,0 +1,23 @@
+<div class="btn-group w-fit">
+  {% if this.button_text != blank and this.button_url != blank %}
+    <div class="pb-2">
+      <a
+        href="{{ this.button_url }}"
+        class="button button--primary inline-block w-full text-center"
+      >
+        <span>{{ this.button_text }}</span>
+      </a>
+    </div>
+  {% endif %}
+
+  {% if this.button_text_secondary != blank and this.button_url_secondary != blank %}
+    <div>
+      <a
+        href="{{ this.button_url_secondary }}"
+        class="button button--secondary inline-block  w-full text-center"
+      >
+        <span>{{ this.button_text_secondary }}</span>
+      </a>
+    </div>
+  {% endif %}
+</div>
