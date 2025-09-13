@@ -24,26 +24,26 @@
       and backInStock.settings.show_button == 'sold_out'
     %}
       <button
-  type="submit"
-  name="add"
-  class="button button--primary w-full"
-  data-add-to-cart
-  data-add-to-cart-button
-  {{ backInStockConfig }}
->
-  <span>{{- 'product.form.add_to_cart_button_label' | t -}}</span>
-</button>
+        type="submit"
+        name="add"
+        class="button button--primary w-full"
+        data-add-to-cart
+        data-add-to-cart-button
+        {{ backInStockConfig }}
+      >
+        <span>{{- 'product.form.add_to_cart_button_label' | t -}}</span>
+      </button>
     {% else %}
       <button
-  type="submit"
-  name="add"
-  class="button button--primary w-full"
-  data-add-to-cart
-  data-add-to-cart-button
-  {{ backInStockConfig }}
->
-  <span>{{- 'product.form.sold_out_button_label' | t -}}</span>
-</button>
+        type="submit"
+        name="add"
+        class="button button--primary w-full"
+        data-add-to-cart
+        data-add-to-cart-button
+        {{ backInStockConfig }}
+      >
+        <span>{{- 'product.form.sold_out_button_label' | t -}}</span>
+      </button>
     {% endif %}
   {%- endif -%}
 {%- endform -%}

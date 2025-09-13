@@ -44,11 +44,14 @@
     {% endif %}
 
     {% if article_button_label %}
-  <div class="mt-4">
-    <a href="{{ article.url }}" class="inline-block px-4 py-2 rounded bg-primary-button-bg text-primary-button-text hover:bg-opacity-90 transition">
-      {{ article_button_label }}
-    </a>
-  </div>
-{% endif %}
+      <div class="mt-4">
+        <a
+          href="{{ article.url }}"
+          class="inline-block px-4 py-2 rounded bg-primary-button-bg text-primary-button-text hover:bg-opacity-90 transition"
+        >
+          {{ article_button_label }}
+        </a>
+      </div>
+    {% endif %}
   </div>
 </div>

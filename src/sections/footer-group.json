@@ -1,1 +1,56 @@
-{"type":"footer","name":"Footer","sections":{"footer":{"type":"footer","blocks":{"6685cd43-7e1a-43c4-9462-e9e7486815ab":{"type":"text","settings":{"logo_width":120,"heading":"Contact","subtext":"<p><strong>Haps Nordic<\/strong><br\/>Sehesteds alle 2<br\/>3520 Farum<br\/>DK<\/p><p>61677820<br\/>Hello@hapsnordic.dk<\/p><p><\/p><p><strong>RETURN ADDRESS<\/strong><br\/>Att.: Haps Nordic<br\/>Transportcenter all 4-10<br\/>7400 Herning<\/p>"}},"f7aa5aba-76ea-49b1-b837-fabf560d9700":{"type":"link_list","settings":{"heading":"Customer Service","menu":"customer-service"}},"23251214-e14a-45d0-b198-6818059f4107":{"type":"link_list","settings":{"heading":"Concept","menu":"concept"}}},"block_order":["6685cd43-7e1a-43c4-9462-e9e7486815ab","f7aa5aba-76ea-49b1-b837-fabf560d9700","23251214-e14a-45d0-b198-6818059f4107"],"custom_css":["a {font-size: 12px;}","h3 {font-size: 14px;}","ul {max-width: 16rem;}","@media only screen and (max-width: 600px) {h3 {padding-top: 20px; } .pt-12 {padding-top: 1rem; }}",".grid {column-gap: 250px;}",".grid.md\\:grid-cols-3 {max-width: 1400px; margin-left: auto; margin-right: auto;}"],"settings":{"show_social_media":true,"show_payment_methods":true,"show_delivery_methods":true,"show_country_selector":true,"color_scheme":"accent-1"}}},"order":["footer"]}
+{
+    "type": "footer",
+    "name": "Footer",
+    "sections": {
+        "footer": {
+            "type": "footer",
+            "blocks": {
+                "6685cd43-7e1a-43c4-9462-e9e7486815ab": {
+                    "type": "text",
+                    "settings": {
+                        "logo_width": 120,
+                        "heading": "Contact",
+                        "subtext": "<p><strong>Haps Nordic<\/strong><br\/>Sehesteds alle 2<br\/>3520 Farum<br\/>DK<\/p><p>61677820<br\/>Hello@hapsnordic.dk<\/p><p><\/p><p><strong>RETURN ADDRESS<\/strong><br\/>Att.: Haps Nordic<br\/>Transportcenter all 4-10<br\/>7400 Herning<\/p>"
+                    }
+                },
+                "f7aa5aba-76ea-49b1-b837-fabf560d9700": {
+                    "type": "link_list",
+                    "settings": {
+                        "heading": "Customer Service",
+                        "menu": "customer-service"
+                    }
+                },
+                "23251214-e14a-45d0-b198-6818059f4107": {
+                    "type": "link_list",
+                    "settings": {
+                        "heading": "Concept",
+                        "menu": "concept"
+                    }
+                }
+            },
+            "block_order": [
+                "6685cd43-7e1a-43c4-9462-e9e7486815ab",
+                "f7aa5aba-76ea-49b1-b837-fabf560d9700",
+                "23251214-e14a-45d0-b198-6818059f4107"
+            ],
+            "custom_css": [
+                "a {font-size: 12px;}",
+                "h3 {font-size: 14px;}",
+                "ul {max-width: 16rem;}",
+                "@media only screen and (max-width: 600px) {h3 {padding-top: 20px; } .pt-12 {padding-top: 1rem; }}",
+                ".grid {column-gap: 250px;}",
+                ".grid.md\\:grid-cols-3 {max-width: 1400px; margin-left: auto; margin-right: auto;}"
+            ],
+            "settings": {
+                "show_social_media": true,
+                "show_payment_methods": true,
+                "show_delivery_methods": true,
+                "show_country_selector": true,
+                "color_scheme": "accent-1"
+            }
+        }
+    },
+    "order": [
+        "footer"
+    ]
+}

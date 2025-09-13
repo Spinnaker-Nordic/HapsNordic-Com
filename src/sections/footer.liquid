@@ -5,105 +5,113 @@
     <div class="flex flex-col gap-6 pt-12 pb-6">
       {%- comment -%}Content{%- endcomment -%}
       <div class="flex">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-y-16 gap-x-[250px] pb-12 items-start max-w-4xl w-full mx-auto">
-  {%- comment -%} Top Row {%- endcomment -%}
-  {% for block in section.blocks %}
-    {% assign this = block.settings %}
-    {% case block.type %}
-      {% when 'text' %}
-        <div class="w-full">
-          {%- capture logo_content -%}
-            {%- if this.logo -%}
-              {%- capture sizes -%}{{ this.logo_width }}px{%- endcapture -%}
-              {%- capture widths -%}{{ this.logo_width }}{%- endcapture -%}
-              {{- this.logo 
-                | image_url: width: this.logo_width 
-                | image_tag: sizes: sizes, widths: widths, class: 'pb-4'
-              -}}
-            {%- else -%}
-              <h3 class="h5 font-bold">{{ this.heading }}</h3>
-            {%- endif -%}
-          {%- endcapture -%}
-          {{ logo_content }}
-          <div class="rte max-w-md">
-            {{ this.subtext }}
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-16 gap-x-[250px] pb-12 items-start max-w-4xl w-full mx-auto">
+          {%- comment -%} Top Row {%- endcomment -%}
+          {% for block in section.blocks %}
+            {% assign this = block.settings %}
+            {% case block.type %}
+              {% when 'text' %}
+                <div class="w-full">
+                  {%- capture logo_content -%}
+                    {%- if this.logo -%}
+                      {%- capture sizes -%}{{ this.logo_width }}px{%- endcapture -%}
+                      {%- capture widths -%}{{ this.logo_width }}{%- endcapture -%}
+                      {{- this.logo 
+                        | image_url: width: this.logo_width 
+                        | image_tag: sizes: sizes, widths: widths, class: 'pb-4'
+                      -}}
+                    {%- else -%}
+                      <h3 class="h5 font-bold">{{ this.heading }}</h3>
+                    {%- endif -%}
+                  {%- endcapture -%}
+                  {{ logo_content }}
+                  <div class="rte max-w-md">
+                    {{ this.subtext }}
+                  </div>
+                </div>
+              {% when 'link_list' %}
+                <div class="w-full">
+                  <h3 class="h5 font-bold">{{ this.heading }}</h3>
+                  <ul>
+                    {% for link in this.menu.links %}
+                      <li class="mb-2 last:mb-0">
+                        <a href="{{ link.url }}" class="hover:underline">
+                          {{ link.title -}}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+            {% endcase %}
+          {% endfor %}
+
+          {%- comment -%} Bottom Row {%- endcomment -%}
+          {% if section.settings.show_payment_methods %}
+            <div class="max-w-[16rem] pt-12">
+              <h3 class="h5 font-bold">{{ 'sections.footer.payment_title' | t }}</h3>
+              <ul class="flex flex-wrap gap-2">
+                {%- for type in shop.enabled_payment_types -%}
+                  <li class="h-8 w-12">
+                    <img
+                      class="h-full w-full"
+                      src="{{ type | payment_type_img_url }}"
+                      alt="{{ type }}"
+                    >
+                  </li>
+                {%- endfor -%}
+
+                {%- capture manualPaymentMethods -%}
+                  {%- render 'payment-methods' -%}
+                {%- endcapture -%}
+
+                {% assign manualPaymentMethods = manualPaymentMethods | split: ',' %}
+                {% for manualPayment in manualPaymentMethods %}
+                  <li class="h-8 w-12">
+                    <img
+                      class="h-full w-full"
+                      src="{{ manualPayment | payment_type_img_url }}"
+                      alt="{{ manualPayment }}"
+                    >
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if section.settings.show_delivery_methods %}
+            {% capture delivery_icons %}
+              {% for i in (1..11) %}
+                {% assign setting = 'delivery_method_' | append: i %}
+                {% if settings[setting] != blank %}
+                  <li class="h-8 w-12">{% render 'icons', icon: setting %}</li>
+                {% endif %}
+              {% endfor %}
+            {% endcapture %}
+
+            {% if delivery_icons != blank %}
+              <div class="pt-12">
+                <h3 class="h5 font-bold">{{ 'sections.footer.delivery_title' | t }}</h3>
+                <ul class="flex flex-wrap gap-2">
+                  {{ delivery_icons }}
+                </ul>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          {% if section.settings.show_social_media %}
+            {% capture social_icons %}
+              {% render 'social-icons' %}
+            {% endcapture %}
+
+            {% if social_icons != blank %}
+              <div class="pt-12">
+                <h3 class="h5 font-bold">{{ 'sections.footer.social_media_title' | t }}</h3>
+                {{ social_icons }}
+              </div>
+            {% endif %}
+          {% endif %}
         </div>
-      {% when 'link_list' %}
-        <div class="w-full">
-          <h3 class="h5 font-bold">{{ this.heading }}</h3>
-          <ul>
-            {% for link in this.menu.links %}
-              <li class="mb-2 last:mb-0">
-                <a href="{{ link.url }}" class="hover:underline">
-                  {{ link.title -}}
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-    {% endcase %}
-  {% endfor %}
-
-  {%- comment -%} Bottom Row {%- endcomment -%}
-  {% if section.settings.show_payment_methods %}
-    <div class="max-w-[16rem] pt-12">
-      <h3 class="h5 font-bold">{{ 'sections.footer.payment_title' | t }}</h3>
-      <ul class="flex flex-wrap gap-2">
-        {%- for type in shop.enabled_payment_types -%}
-          <li class="h-8 w-12">
-            <img class="h-full w-full" src="{{ type | payment_type_img_url }}" alt="{{ type }}">
-          </li>
-        {%- endfor -%}
-
-        {%- capture manualPaymentMethods -%}
-          {%- render 'payment-methods' -%}
-        {%- endcapture -%}
-
-        {% assign manualPaymentMethods = manualPaymentMethods | split: ',' %}
-        {% for manualPayment in manualPaymentMethods %}
-          <li class="h-8 w-12">
-            <img class="h-full w-full" src="{{ manualPayment | payment_type_img_url }}" alt="{{ manualPayment }}">
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-
-  {% if section.settings.show_delivery_methods %}
-    {% capture delivery_icons %}
-      {% for i in (1..11) %}
-        {% assign setting = 'delivery_method_' | append: i %}
-        {% if settings[setting] != blank %}
-          <li class="h-8 w-12">{% render 'icons', icon: setting %}</li>
-        {% endif %}
-      {% endfor %}
-    {% endcapture %}
-
-    {% if delivery_icons != blank %}
-      <div class="pt-12">
-        <h3 class="h5 font-bold">{{ 'sections.footer.delivery_title' | t }}</h3>
-        <ul class="flex flex-wrap gap-2">
-          {{ delivery_icons }}
-        </ul>
       </div>
-    {% endif %}
-  {% endif %}
-
-  {% if section.settings.show_social_media %}
-    {% capture social_icons %}
-      {% render 'social-icons' %}
-    {% endcapture %}
-
-    {% if social_icons != blank %}
-      <div class="pt-12">
-        <h3 class="h5 font-bold">{{ 'sections.footer.social_media_title' | t }}</h3>
-        {{ social_icons }}
-      </div>
-    {% endif %}
-  {% endif %}
-</div>
-</div>
 
       {%- comment -%}Sub footer{%- endcomment -%}
       <div class="flex items-center border-t border-accent-1-bg pt-6">

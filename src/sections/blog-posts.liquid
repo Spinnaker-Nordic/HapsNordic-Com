@@ -37,14 +37,14 @@
       %}
     {% else %}
       {% render 'article-card--secondary', 
-  article: article, 
-  show_date: section.settings.show_date, 
-  show_author: section.settings.show_author, 
-  show_excerpt: section.settings.show_excerpt, 
-  show_categories: section.settings.show_categories,
-  article_button_label: section.settings.article_button_label,
-  sizes: sizes
-%}
+        article: article, 
+        show_date: section.settings.show_date, 
+        show_author: section.settings.show_author, 
+        show_excerpt: section.settings.show_excerpt, 
+        show_categories: section.settings.show_categories,
+        article_button_label: section.settings.article_button_label,
+        sizes: sizes
+      %}
     {% endif %}
   {%- endfor -%}
 {%- endcapture -%}
@@ -148,11 +148,11 @@
       "default": true
     },
     {
-  "type": "text",
-  "id": "article_button_label",
-  "label": "Article button label",
-  "default": "Read more"
-},
+      "type": "text",
+      "id": "article_button_label",
+      "label": "Article button label",
+      "default": "Read more"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",

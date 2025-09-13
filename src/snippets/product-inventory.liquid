@@ -24,31 +24,31 @@
       </span>
     {%- else -%}
       {%- if variant.inventory_policy == 'continue'
-  and variant.inventory_quantity <= 0
-  and variant.requires_shipping
--%}
-  {%- if variant.incoming and variant.next_incoming_date -%}
-    {%- capture next_incoming_date -%}{{ variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
-    <span
-      {% unless variant_selected %}
-        hidden
-      {% endunless %}
-      data-variant-id="{{ variant.id }}"
-      class="before:bg-caution"
-    >
-      {{ 'product.inventory.incoming_stock_label' | t: date: next_incoming_date }}
-    </span>
-  {%- else -%}
-    <span
-      {% unless variant_selected %}
-        hidden
-      {% endunless %}
-      data-variant-id="{{ variant.id }}"
-      class="before:bg-caution"
-    >
-      Pre-order
-    </span>
-  {%- endif -%}
+        and variant.inventory_quantity <= 0
+        and variant.requires_shipping
+      -%}
+        {%- if variant.incoming and variant.next_incoming_date -%}
+          {%- capture next_incoming_date -%}{{ variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
+          <span
+            {% unless variant_selected %}
+              hidden
+            {% endunless %}
+            data-variant-id="{{ variant.id }}"
+            class="before:bg-caution"
+          >
+            {{ 'product.inventory.incoming_stock_label' | t: date: next_incoming_date }}
+          </span>
+        {%- else -%}
+          <span
+            {% unless variant_selected %}
+              hidden
+            {% endunless %}
+            data-variant-id="{{ variant.id }}"
+            class="before:bg-caution"
+          >
+            Pre-order
+          </span>
+        {%- endif -%}
       {%- else -%}
         <span
           {% unless variant_selected %}

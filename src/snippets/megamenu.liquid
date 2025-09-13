@@ -36,10 +36,10 @@
         {% if grid_custom_icon != blank %}
           <div class="megamenu__grid--icon" style="{{ colors }}">
             {{-
-  grid_custom_icon
-  | image_url: width: '600'
-  | image_tag: class: 'w-full h-auto object-cover'
--}}
+              grid_custom_icon
+              | image_url: width: '600'
+              | image_tag: class: 'w-full h-auto object-cover'
+            -}}
           </div>
         {% else %}
           {% if grid_icon != 'none' %}

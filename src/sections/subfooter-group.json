@@ -1,1 +1,6 @@
-{"type":"custom.sub_footer","name":"Subfooter","sections":{},"order":[]}
+{
+    "type": "custom.sub_footer",
+    "name": "Subfooter",
+    "sections": {},
+    "order": []
+}

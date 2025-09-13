@@ -45,14 +45,16 @@
           {% endif %}
         </div>
         <div class="absolute inset-0 flex items-center justify-center px-4 text-center">
-  <div class="z-10 flex flex-col items-center justify-center gap-4">
+          <div class="z-10 flex flex-col items-center justify-center gap-4">
             <h2 class="text-2xl font-semibold text-white">
-  {{ this.title | default: this.collection.title | default: 'Collection' }}
-</h2>
-<a href="{{ this.url | default: this.collection.url }}"
-   class="px-4 py-2 bg-white text-black font-medium rounded hover:bg-neutral-100 transition">
-  {{ this.button_label | default: 'Se mere' }}
-</a>
+              {{ this.title | default: this.collection.title | default: 'Collection' }}
+            </h2>
+            <a
+              href="{{ this.url | default: this.collection.url }}"
+              class="px-4 py-2 bg-white text-black font-medium rounded hover:bg-neutral-100 transition"
+            >
+              {{ this.button_label | default: 'Se mere' }}
+            </a>
           </div>
         </div>
       </div>
@@ -157,11 +159,11 @@
           "info": "Defaults to collection"
         },
         {
-  "type": "text",
-  "id": "button_label",
-  "label": "Button label",
-  "default": "Se mere"
-}
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Se mere"
+        }
       ]
     }
   ],

@@ -1,1 +1,46 @@
-{"type":"custom.account","name":"Forms","sections":{"forms":{"type":"main-account-forms","blocks":{"login":{"type":"login","settings":{"title":"Login","content":""}},"register":{"type":"register","settings":{"title":"Register account","content":"<p>Write some text here<\/p>"}},"recover":{"type":"recover","settings":{"title":"Reset password","content":"<p>Write some text here<\/p>","reset_seccess_message":"","reset_fail_message":""}}},"block_order":["login","register","recover"],"settings":{"image":"shopify:\/\/shop_images\/A.Paternotte_065_e19246de-1589-4bfa-ac25-f94e53a508c1.jpg","color_scheme":"accent-1"}}},"order":["forms"]}
+{
+    "type": "custom.account",
+    "name": "Forms",
+    "sections": {
+        "forms": {
+            "type": "main-account-forms",
+            "blocks": {
+                "login": {
+                    "type": "login",
+                    "settings": {
+                        "title": "Login",
+                        "content": ""
+                    }
+                },
+                "register": {
+                    "type": "register",
+                    "settings": {
+                        "title": "Register account",
+                        "content": "<p>Write some text here<\/p>"
+                    }
+                },
+                "recover": {
+                    "type": "recover",
+                    "settings": {
+                        "title": "Reset password",
+                        "content": "<p>Write some text here<\/p>",
+                        "reset_seccess_message": "",
+                        "reset_fail_message": ""
+                    }
+                }
+            },
+            "block_order": [
+                "login",
+                "register",
+                "recover"
+            ],
+            "settings": {
+                "image": "shopify:\/\/shop_images\/A.Paternotte_065_e19246de-1589-4bfa-ac25-f94e53a508c1.jpg",
+                "color_scheme": "accent-1"
+            }
+        }
+    },
+    "order": [
+        "forms"
+    ]
+}

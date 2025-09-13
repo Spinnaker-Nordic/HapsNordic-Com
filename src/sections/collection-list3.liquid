@@ -9,51 +9,56 @@
     }
   }
 </style>
-<div class="section bg-primary-bg color-scheme__{{ section.settings.color_scheme }}" style="padding-top: 0 !important; padding-bottom: 0 !important;">
-
+<div
+  class="section bg-primary-bg color-scheme__{{ section.settings.color_scheme }}"
+  style="padding-top: 0 !important; padding-bottom: 0 !important;"
+>
   <div
     id="section__{{ section.id }}"
     class="{% if section.settings.mobile_slider %}flex overflow-x-auto scrollbar-hide{% else %}grid{% endif %} section--bleed gap-4 text-primary-text lg:grid"
   >
     {% for block in section.blocks %}
-  {% assign this = block.settings %}
-  {% assign image = this.image | default: this.collection.image %}
-  {% assign url = this.url | default: this.collection.url %}
+      {% assign this = block.settings %}
+      {% assign image = this.image | default: this.collection.image %}
+      {% assign url = this.url | default: this.collection.url %}
 
-  <a
-    href="{{ url }}"
-    class="group relative block rounded overflow-hidden hover:cursor-pointer {% if section.settings.mobile_slider %}max-lg:flex-[90%_0_0]{% endif %}"
-  >
-    <div class="{{ section.settings.media_aspect }}">
-      {# … keep your existing image/placeholder code unchanged … #}
-      {{ image
-        | image_url: width: image.width
-        | image_tag:
-          loading: 'lazy',
-          sizes: sizes,
-          widths: '150, 180, 210, 240, 270, 300, 330, 410, 490, 570, 650, 730, 810, 890, 970, 1050, 1290, 1530, 1770, 2090, 2410, 2730',
-          class: 'object-cover rounded bg-secondary-bg group-hover:scale-[1.025] transition-transform duration-500 ease-in-out'
-      }}
-    </div>
+      <a
+        href="{{ url }}"
+        class="group relative block rounded overflow-hidden hover:cursor-pointer {% if section.settings.mobile_slider %}max-lg:flex-[90%_0_0]{% endif %}"
+      >
+        <div class="{{ section.settings.media_aspect }}">
+          {# … keep your existing image/placeholder code unchanged … #}
+          {{
+            image
+            | image_url: width: image.width
+            | image_tag:
+              loading: 'lazy',
+              sizes: sizes,
+              widths: '150, 180, 210, 240, 270, 300, 330, 410, 490, 570, 650, 730, 810, 890, 970, 1050, 1290, 1530, 1770, 2090, 2410, 2730',
+              class: 'object-cover rounded bg-secondary-bg group-hover:scale-[1.025] transition-transform duration-500 ease-in-out'
+          }}
+        </div>
 
-    <div class="absolute inset-0 flex items-center justify-center before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/30 before:to-transparent before:content-['']">
-      <div class="z-10 flex flex-col items-center justify-center gap-4 px-4 text-center">
-        <span class="text-4xl font-semibold text-secondary-text">
-          {{- this.title | default: this.collection.title | default: 'Collection' -}}
-        </span>
-
-        <span class="relative inline-flex h-12 w-12" aria-hidden="true">
-          <span class="absolute inset-0 m-auto inline-flex h-4/6 w-4/6 animate-horizon-ping rounded-full bg-secondary-button-bg opacity-75"></span>
-          <span class="relative inline-flex h-12 w-12 rounded-full bg-secondary-button-bg">
-            <span class="absolute inset-0 m-auto h-6 w-6 text-secondary-button-text">
-              {% render 'icons', icon: 'chevron-right' %}
+        <div class="absolute inset-0 flex items-center justify-center before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/30 before:to-transparent before:content-['']">
+          <div class="z-10 flex flex-col items-center justify-center gap-4 px-4 text-center">
+            <span class="text-4xl font-semibold text-secondary-text">
+              {{- this.title | default: this.collection.title | default: 'Collection' -}}
             </span>
-          </span>
-        </span>
-      </div>
-    </div>
-  </a>
-{% endfor %}
+
+            <span class="relative inline-flex h-12 w-12" aria-hidden="true">
+              <span
+                class="absolute inset-0 m-auto inline-flex h-4/6 w-4/6 animate-horizon-ping rounded-full bg-secondary-button-bg opacity-75"
+              ></span>
+              <span class="relative inline-flex h-12 w-12 rounded-full bg-secondary-button-bg">
+                <span class="absolute inset-0 m-auto h-6 w-6 text-secondary-button-text">
+                  {% render 'icons', icon: 'chevron-right' %}
+                </span>
+              </span>
+            </span>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
   </div>
 </div>
 
