@@ -1,8 +1,17 @@
 {
-  "sections": {
-    "main": {
-      "type": "main-page"
-    }
-  },
-  "order": ["main"]
+    "sections": {
+        "main": {
+            "type": "main-page",
+            "custom_css": [
+                "h1 {color: #6A6A6A;}"
+            ],
+            "settings": {
+                "page_columns": "columns-1",
+                "color_scheme": "accent-1"
+            }
+        }
+    },
+    "order": [
+        "main"
+    ]
 }

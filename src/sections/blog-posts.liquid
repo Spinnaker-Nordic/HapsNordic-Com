@@ -26,14 +26,26 @@
       endif
     -%}
 
-    {% render 'article-card--secondary', 
-      article: article, 
-      show_date: section.settings.show_date, 
-      show_author: section.settings.show_author, 
-      show_excerpt: section.settings.show_excerpt, 
-      show_categories: section.settings.show_categories,
-      sizes: sizes
-    %}
+    {% if section.settings.rounded_image %}
+      {% render 'article-card', 
+        article: article, 
+        show_date: section.settings.show_date, 
+        show_author: section.settings.show_author, 
+        show_excerpt: section.settings.show_excerpt, 
+        show_categories: section.settings.show_categories,
+        sizes: sizes
+      %}
+    {% else %}
+      {% render 'article-card--secondary', 
+        article: article, 
+        show_date: section.settings.show_date, 
+        show_author: section.settings.show_author, 
+        show_excerpt: section.settings.show_excerpt, 
+        show_categories: section.settings.show_categories,
+        article_button_label: section.settings.article_button_label,
+        sizes: sizes
+      %}
+    {% endif %}
   {%- endfor -%}
 {%- endcapture -%}
 
@@ -106,6 +118,12 @@
     },
     {
       "type": "checkbox",
+      "id": "rounded_image",
+      "label": "Rounded Image",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "show_date",
       "label": "Show date",
       "default": true
@@ -128,6 +146,12 @@
       "id": "show_excerpt",
       "label": "Show excerpt",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "article_button_label",
+      "label": "Article button label",
+      "default": "Read more"
     },
     {
       "type": "color_scheme",

@@ -1,8 +1,18 @@
 {
-  "sections": {
-    "main": {
-      "type": "main-404"
-    }
-  },
-  "order": ["main"]
+    "sections": {
+        "main": {
+            "type": "main-404",
+            "settings": {
+                "heading": "404",
+                "content": "<p>The page you are looking for cannot be found.<br\/><br\/><\/p>",
+                "image": "shopify:\/\/shop_images\/Water_bottle_400_ml.-Water_bottle-H1055-Steel-1.jpg",
+                "button_label": "Continue shopping",
+                "button_url": "shopify:\/\/collections",
+                "color_scheme": "accent-2"
+            }
+        }
+    },
+    "order": [
+        "main"
+    ]
 }

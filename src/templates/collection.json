@@ -1,15 +1,42 @@
 {
-  "sections": {
-    "header": {
-      "type": "main-collection-header",
-      "settings": {}
+    "sections": {
+        "header": {
+            "type": "main-collection-header",
+            "custom_css": [
+                "@media only screen and (min-width: 600px) {div.p.max-w-xl {max-width: 70vw !important; width: 100% !important; }}"
+            ],
+            "settings": {
+                "sub_categories": "",
+                "color_scheme": "accent-1"
+            }
+        },
+        "products": {
+            "type": "main-collection-product-grid",
+            "custom_css": [],
+            "settings": {
+                "products_per_page": 40,
+                "color_scheme": "accent-2"
+            }
+        },
+        "richtext_HzLiMF": {
+            "type": "richtext",
+            "custom_css": [
+                ".bg-secondary-bg {padding-top: 0; padding-left: 0;}"
+            ],
+            "name": "Richtext",
+            "settings": {
+                "content": "{{ collection.metafields.custom.collection_bottom_text | metafield_tag }}",
+                "page_columns": "columns-1",
+                "text_alignment": "text-left",
+                "content_alignment": "m-auto",
+                "spacing": "contained",
+                "color_scheme": "scheme-63276c48-06ab-4690-9ff9-bcaee04ce69e"
+            }
+        }
     },
-    "products": {
-      "type": "main-collection-product-grid",
-      "settings": {
-        "products_per_page": 8
-      }
-    }
-  },
-  "order": ["header", "products"]
+    "order": [
+        "header",
+        "products",
+        "richtext_HzLiMF"
+    ]
 }

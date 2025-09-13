@@ -1,55 +1,92 @@
 {
-  "type": "header",
-  "name": "Header group",
-  "sections": {
-    "header-announcement": {
-      "type": "header-announcement",
-      "blocks": {
-        "b5ef7f1b-a80f-46fe-92cd-0c15c39e37de": {
-          "type": "Announcement",
-          "settings": {
-            "title": "Free shipping"
-          }
+    "type": "header",
+    "name": "Header group",
+    "sections": {
+        "header-announcement": {
+            "type": "header-announcement",
+            "blocks": {
+                "b5ef7f1b-a80f-46fe-92cd-0c15c39e37de": {
+                    "type": "Announcement",
+                    "settings": {
+                        "icon": "none",
+                        "title": "Shipping worldwide"
+                    }
+                }
+            },
+            "block_order": [
+                "b5ef7f1b-a80f-46fe-92cd-0c15c39e37de"
+            ],
+            "custom_css": [
+                ".flex {font-size: 14px; padding: 2px; text-transform: uppercase;}"
+            ],
+            "settings": {
+                "animation": "crossfade",
+                "timing": 500,
+                "color_scheme": "inverse"
+            }
         },
-        "b66d7d41-4a3d-4e1a-9f9b-405c8c672b5b": {
-          "type": "Announcement",
-          "settings": {
-            "title": "★★★★★ 4,9 Trustpilot"
-          }
-        },
-        "af501a83-e70a-4479-a649-26658006e177": {
-          "type": "Announcement",
-          "settings": {
-            "title": "1-2 days shipping"
-          }
+        "header-navigation": {
+            "type": "header-navigation",
+            "blocks": {
+                "mega_menu_fJtbdH": {
+                    "type": "mega-menu",
+                    "settings": {
+                        "menu_item": "SHOP",
+                        "layout": "tab",
+                        "grid-1-custom-icon": "shopify:\/\/shop_images\/Termo_drikkedunk_500_ml.-Water_bottle-H1064-Blush-1.png",
+                        "grid-1-icon": "star",
+                        "grid-1-background-color": "#f5f5f5",
+                        "grid-1-icon-color": "#89a188",
+                        "grid-1-heading": "NEWS",
+                        "grid-1-url": "shopify:\/\/collections\/news",
+                        "grid-2-custom-icon": "shopify:\/\/shop_images\/3_caps_for_Smoothiebags-Smoothie_Bags-H1088-2.jpg",
+                        "grid-2-icon": "heart",
+                        "grid-2-background-color": "#f5f5f5",
+                        "grid-2-icon-color": "#89a188",
+                        "grid-2-heading": "Extra parts",
+                        "grid-2-url": "shopify:\/\/collections\/extra-parts",
+                        "grid-3-custom-icon": "shopify:\/\/shop_images\/HAPS_BOX_-_BACK_IN_STOCK_MID_MARCH-Lunch_box-H1051-Steel-2.jpg",
+                        "grid-3-icon": "trophy",
+                        "grid-3-background-color": "#f5f5f5",
+                        "grid-3-icon-color": "#89a188",
+                        "grid-3-heading": "LUNCH BOX",
+                        "grid-3-url": "shopify:\/\/collections\/lunch-box",
+                        "grid-4-custom-icon": "shopify:\/\/shop_images\/Bottle_and_bowls-dog-H1117-minty-1.jpg",
+                        "grid-4-icon": "refresh",
+                        "grid-4-background-color": "#f5f5f5",
+                        "grid-4-icon-color": "#89a188",
+                        "grid-4-heading": "HAPS DOG",
+                        "grid-4-url": "shopify:\/\/collections\/haps-dog"
+                    }
+                }
+            },
+            "block_order": [
+                "mega_menu_fJtbdH"
+            ],
+            "custom_css": [
+                "img {margin-top: 10px; margin-bottom: 10px;}",
+                ".pr-3 {font-size: 14px; padding-top: 5px; padding-bottom: 5px;}",
+                ".header__navigation a {text-transform: uppercase; font-size: 14px;}",
+                "p.mt-2 {font-size: 14px; text-transform: uppercase;}",
+                "@media only screen and (min-width: 600px) {ul.flex.h-full {justify-content: center !important; }}"
+            ],
+            "settings": {
+                "logo": "shopify:\/\/shop_images\/HN_LOGO_READY_sky_95x_2x_cacb42a7-215c-4851-8663-f153458c2e21.avif",
+                "logo_width_desktop": 60,
+                "logo_width_mobile": 50,
+                "sticky": true,
+                "navigation_desktop": "main-menu-2",
+                "navigation_mobile_title": "Menu",
+                "navigation_mobile": "main-menu-2",
+                "navigation_secondary_title": "Info",
+                "navigation_secondary": "",
+                "layout": "logo_left_navigation_inline",
+                "color_scheme": "scheme-63276c48-06ab-4690-9ff9-bcaee04ce69e"
+            }
         }
-      },
-      "block_order": [
-        "b5ef7f1b-a80f-46fe-92cd-0c15c39e37de",
-        "b66d7d41-4a3d-4e1a-9f9b-405c8c672b5b",
-        "af501a83-e70a-4479-a649-26658006e177"
-      ],
-      "settings": {
-        "animation": "slide",
-        "timing": 500,
-        "color_scheme": "background-1"
-      }
     },
-    "header-navigation": {
-      "type": "header-navigation",
-      "settings": {
-        "logo": "{{ shop.brand.logo }}",
-        "logo_width": 120,
-        "sticky": true,
-        "navigation_desktop": "main-menu",
-        "navigation_mobile_title": "Menu",
-        "navigation_mobile": "main-menu",
-        "navigation_secondary_title": "Info",
-        "navigation_secondary": "information",
-        "layout": "logo_center_navigation_inline",
-        "color_scheme": "background-2"
-      }
-    }
-  },
-  "order": ["header-announcement", "header-navigation"]
+    "order": [
+        "header-announcement",
+        "header-navigation"
+    ]
 }

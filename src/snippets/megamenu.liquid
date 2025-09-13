@@ -37,8 +37,8 @@
           <div class="megamenu__grid--icon" style="{{ colors }}">
             {{-
               grid_custom_icon
-              | image_url: width: '48'
-              | image_tag: sizes: '48px', widths: '48', class: 'object-contain'
+              | image_url: width: '600'
+              | image_tag: class: 'w-full h-auto object-cover'
             -}}
           </div>
         {% else %}
@@ -62,10 +62,10 @@
 <div class="megamenu {{ layout }}" data-component="mega-menu">
   <div class="block-container">
     <div class="megamenu__container">
-      <ul class="flex flex-wrap gap-24">
+      <ul class="flex flex-wrap gap-20">
         {% for links in link.links %}
           <li>
-            <a href="{{ links.url }}" class="h5 block font-bold">{{ links.title }}</a>
+            <a href="{{ links.url }}" class="h6 block font-bold">{{ links.title }}</a>
             <ul>
               {% for link_child in links.links %}
                 <li>
