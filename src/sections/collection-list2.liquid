@@ -15,64 +15,54 @@
     class="{% if section.settings.mobile_slider %}flex overflow-x-auto scrollbar-hide{% else %}grid{% endif %} section--bleed gap-4 text-primary-text lg:grid"
   >
     {% for block in section.blocks %}
-  {% assign this = block.settings %}
-  {% assign image = this.image | default: this.collection.image %}
-  {% assign url = this.url | default: this.collection.url %}
-
-  <a
-    href="{{ url }}"
-    class="group relative block rounded overflow-hidden hover:cursor-pointer {% if section.settings.mobile_slider %}max-lg:flex-[90%_0_0]{% endif %}"
-  >
-    <div class="{{ section.settings.media_aspect }}">
-      {% if image == blank %}
-        {%- liquid
-          capture placeholder_image
-            cycle 'placeholder': 'hero-apparel-1', 'hero-apparel-2', 'hero-apparel-3'
-          endcapture
-          echo placeholder_image | placeholder_svg_tag: 'placeholder'
-        -%}
-      {% else %}
-        {% assign minimumWidth = 100 | divided_by: section.blocks.size %}
-        {%- capture sizes -%}
-        (min-width: 1024px) {{ 100 | divided_by: section.blocks.size | times: image.aspect_ratio | at_least: minimumWidth }}vw, 100vw
-        {%- endcapture -%}
-        {{
-          image
-          | image_url: width: image.width
-          | image_tag:
-            loading: 'lazy',
-            sizes: sizes,
-            widths: '150, 180, 210, 240, 270, 300, 330, 410, 490, 570, 650, 730, 810, 890, 970, 1050, 1290, 1530, 1770, 2090, 2410, 2730',
-            class: 'object-cover rounded bg-secondary-bg group-hover:scale-[1.025] transition-transform duration-500 ease-in-out'
-        }}
-      {% endif %}
-    </div>
-
-    <div class="absolute top-0 left-0 flex h-full w-full items-end before:absolute before:left-0 before:bottom-0 before:h-1/3 before:w-full before:bg-gradient-to-t before:from-black/30 before:to-transparent before:content-['']">
-      <div class="z-10 flex w-full items-center justify-between px-4 py-6">
-        <span class="text-4xl font-semibold text-secondary-text">
-          {{- this.title | default: this.collection.title | default: 'Collection' -}}
-        </span>
-        <span class="relative inline-flex h-12 w-12" aria-hidden="true">
-          <span
-            class="absolute inset-0 m-auto inline-flex h-4/6 w-4/6 animate-horizon-ping rounded-full bg-secondary-button-bg opacity-75"
-          ></span>
-          <span class="relative inline-flex h-12 w-12 rounded-full bg-secondary-button-bg">
-            <span class="absolute inset-0 m-auto h-6 w-6 text-secondary-button-text">
-              {% render 'icons', icon: 'chevron-right' %}
-            </span>
-          </span>
-        </span>
+      {% assign this = block.settings %}
+      {% assign image = this.image | default: this.collection.image %}
+      <div
+        class="group relative rounded overflow-hidden hover:cursor-pointer {% if section.settings.mobile_slider %}max-lg:flex-[90%_0_0]{% endif %}"
+      >
+        <div class="{{ section.settings.media_aspect }} ">
+          {% if image == blank %}
+            {%- liquid
+              capture placeholder_image
+                cycle 'placeholder': 'hero-apparel-1', 'hero-apparel-2', 'hero-apparel-3'
+              endcapture
+              echo placeholder_image | placeholder_svg_tag: 'placeholder'
+            -%}
+          {% else %}
+            {% assign minimumWidth = 100 | divided_by: section.blocks.size %}
+            {%- capture sizes -%}
+            (min-width: 1024px) {{ 100 | divided_by: section.blocks.size | times: image.aspect_ratio | at_least: minimumWidth }}vw, 100vw
+            {%- endcapture -%}
+            {{
+              image
+              | image_url: width: image.width
+              | image_tag:
+                loading: 'lazy',
+                sizes: sizes,
+                widths: '150, 180, 210, 240, 270, 300, 330, 410, 490, 570, 650, 730, 810, 890, 970, 1050, 1290, 1530, 1770, 2090, 2410, 2730',
+                class: 'object-cover rounded bg-secondary-bg group-hover:scale-[1.025] transition-transform duration-500 ease-in-out'
+            }}
+          {% endif %}
+        </div>
+        <div class="absolute inset-0 flex items-center justify-center px-4 text-center">
+  <div class="z-10 flex flex-col items-center justify-center gap-4">
+            <h2 class="text-2xl font-semibold text-white">
+  {{ this.title | default: this.collection.title | default: 'Collection' }}
+</h2>
+<a href="{{ this.url | default: this.collection.url }}"
+   class="px-4 py-2 bg-white text-black font-medium rounded hover:bg-neutral-100 transition">
+  {{ this.button_label | default: 'Se mere' }}
+</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </a>
-{% endfor %}
+    {% endfor %}
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "Collection list",
+  "name": "Collection list2",
   "settings": [
     {
       "type": "select",
@@ -165,13 +155,19 @@
           "id": "image",
           "label": "Image",
           "info": "Defaults to collection"
-        }
+        },
+        {
+  "type": "text",
+  "id": "button_label",
+  "label": "Button label",
+  "default": "Se mere"
+}
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection list",
+      "name": "Collection list2",
       "blocks": [
         {
           "type": "collection"

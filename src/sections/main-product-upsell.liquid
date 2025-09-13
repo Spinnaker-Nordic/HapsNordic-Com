@@ -3,61 +3,64 @@
   data-component="product-main"
 >
   {% for product in product.metafields.custom.upsell_products.value %}
-    {% comment %} {% assign product_form_id = "product-form-" | append: product.id | append: "-" | append: section.id %} {% endcomment %}
-    {% comment %}
-      {% render 'product-variants', product: product, form_id: product_form_id %}
-      {% render 'product-buy-buttons', product: product, form_id: product_form_id, section: section %}
-    {% endcomment %}
+    {% assign all_variants_sold_out = true %}
+    {% for variant in product.variants %}
+      {% if variant.available %}
+        {% assign all_variants_sold_out = false %}
+      {% endif %}
+    {% endfor %}
 
-    <div class="flex items-center gap-2 max-lg:w-[300px] max-lg:min-w-[300px]">
-      <img
-        src="{{ product.featured_media | image_url: width: 100 }}"
-        alt="{{ product.featured_media.alt | escape }}"
-        class="h-auto w-[80px]"
-        loading="lazy"
-        width="100"
-        height="100"
-      >
-      <div class="w-full">
-        <h6 class="mb-1 text-sm">
-          {{ product.title }}
-        </h6>
-        {% render 'product-price-upsell', product: product %}
-        <div class="grid grid-cols-2 gap-1">
-          <select
-            class="upsell-variant-selector h-[30px] rounded-[8px] p-1 text-sm {% if product.has_only_default_variant or product.variants.size == 1 %} invisible opacity-0 {% endif %}"
-            data-variant-selector-upsell
-            product-id="{{ product.id }}"
-          >
-            {% for variant in product.variants %}
-              {% if variant.available %}
-                <option value="{{  variant.id }}" price="{{ variant.price | money }}">
-                  {{ variant.title }}
-                </option>
-              {% endif %}
-            {% endfor %}
-          </select>
-
-          {%- if product.selected_or_first_available_variant.available -%}
-            <button
-              class="button button--primary flex h-[30px] w-full items-center justify-center rounded-[8px] p-2"
-              data-add-to-cart-button-upsell
+    {% unless all_variants_sold_out %}
+      <div class="flex items-center gap-2 max-lg:w-[300px] max-lg:min-w-[300px]">
+        <img
+          src="{{ product.featured_media | image_url: width: 100 }}"
+          alt="{{ product.featured_media.alt | escape }}"
+          class="h-auto w-[80px]"
+          loading="lazy"
+          width="100"
+          height="100"
+        >
+        <div class="w-full">
+          <h6 class="mb-1 text-sm">
+            {{ product.title }}
+          </h6>
+          {% render 'product-price-upsell', product: product %}
+          <div class="grid grid-cols-2 gap-1">
+            <select
+              class="upsell-variant-selector h-[30px] rounded-[8px] p-1 text-sm {% if product.has_only_default_variant or product.variants.size == 1 %} invisible opacity-0 {% endif %}"
+              data-variant-selector-upsell
               product-id="{{ product.id }}"
             >
-              <span class="text-sm">{{ settings.upsell_add_button }}</span>
-            </button>
-          {%- else -%}
-            <button
-              class="button button--primary flex h-[30px] w-full items-center justify-center rounded-[8px]"
-              data-add-to-cart-button-upsell
-              product-id="{{ product.id }}"
-              disabled
-            >
-              <span class="text-sm">{{- 'product.form.sold_out_button_label' | t -}}</span>
-            </button>
-          {%- endif -%}
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option value="{{  variant.id }}" price="{{ variant.price | money }}">
+                    {{ variant.title }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+
+            {%- if product.selected_or_first_available_variant.available -%}
+              <button
+                class="button button--primary flex h-[30px] w-full items-center justify-center rounded-[8px] p-2"
+                data-add-to-cart-button-upsell
+                product-id="{{ product.id }}"
+              >
+                <span class="text-sm">{{ settings.upsell_add_button }}</span>
+              </button>
+            {%- else -%}
+              <button
+                class="button button--primary flex h-[30px] w-full items-center justify-center rounded-[8px]"
+                data-add-to-cart-button-upsell
+                product-id="{{ product.id }}"
+                disabled
+              >
+                <span class="text-sm">{{- 'product.form.sold_out_button_label' | t -}}</span>
+              </button>
+            {%- endif -%}
+          </div>
         </div>
       </div>
-    </div>
+    {% endunless %}
   {% endfor %}
 </div>

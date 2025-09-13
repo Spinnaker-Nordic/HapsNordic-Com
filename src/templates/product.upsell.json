@@ -1,8 +1,1 @@
-{
-  "sections": {
-    "main": {
-      "type": "main-product-upsell"
-    }
-  },
-  "order": ["main"]
-}
+{"sections":{"main":{"type":"main-product-upsell","settings":{}}},"order":["main"]}

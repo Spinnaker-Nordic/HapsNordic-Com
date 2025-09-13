@@ -1,8 +1,1 @@
-{
-  "sections": {
-    "main": {
-      "type": "main-customers-addresses"
-    }
-  },
-  "order": ["main"]
-}
+{"sections":{"main":{"type":"main-customers-addresses","settings":{}}},"order":["main"]}
