@@ -68,7 +68,12 @@
         {%- assign soldOutProductVariants = product_item.variants | where: 'available', false -%}
 
         {% if soldOutProductVariants.size > 0 %}
-          <div class="absolute bottom-0 right-0 z-10 h-fit w-fit p-3">
+          <div
+            class="absolute bottom-0 right-0 z-10 h-fit w-fit p-3"
+            {% if settings.hide_back_in_stock %}
+              style="display: none;"
+            {% endif %}
+          >
             <button
               class="collection-back-in-stock-trigger button button--secondary rounded-sm p-2"
               data-back-in-stock-variant="{{ product_item.selected_or_first_available_variant.id }}"

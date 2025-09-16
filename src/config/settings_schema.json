@@ -433,6 +433,12 @@
         "type": "text",
         "label": "Hide Option 3",
         "id": "hide_option_3"
+      },
+      {
+        "type": "checkbox",
+        "label": "Hide Back In Stock",
+        "id": "hide_back_in_stock",
+        "default": false
       }
     ]
   },
