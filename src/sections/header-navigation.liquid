@@ -137,7 +137,12 @@
 
   <div class="header__navigation--secondary-menu ml-auto flex items-center gap-2">
     {% if settings.enable_search %}
-      <div class="relative hidden w-64 lg:block">
+      <div
+        class="relative hidden w-64 lg:block"
+        {% if section.settings.icon_search_on_desktop %}
+          style="width: 50px; cursor: pointer;"
+        {% endif %}
+      >
         <span class="pointer-events-none absolute top-0 bottom-0 left-0 m-auto mx-4 block h-6 w-6 text-accent-1">
           {% render 'icons', icon: 'search' %}
         </span>
@@ -146,6 +151,9 @@
           type="text"
           placeholder="{{ 'search.predictive.input_placeholder_label' | t }}"
           data-load="predictive-search"
+          {% if section.settings.icon_search_on_desktop %}
+            style="background: transparent; cursor: pointer;"
+          {% endif %}
         >
       </div>
     {% endif %}
@@ -282,6 +290,12 @@
       "id": "navigation_secondary",
       "label": "Secondary navigation",
       "info": "Only shown in mobile navigation drawer. Disabled if left blank."
+    },
+    {
+      "type": "checkbox",
+      "id": "icon_search_on_desktop",
+      "label": "Icon Search On Desktop",
+      "default": true
     },
     {
       "type": "header",

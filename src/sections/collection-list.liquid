@@ -32,10 +32,10 @@
               echo placeholder_image | placeholder_svg_tag: 'placeholder'
             -%}
           {% else %}
-            {% assign minimumWidth = 100 | divided_by: section.blocks.size %}
+            {% assign minimumWidth = 100 | divided_by: section.settings.cols_desktop %}
             {%- capture sizes -%}
-        (min-width: 1024px) {{ 100 | divided_by: section.blocks.size | times: image.aspect_ratio | at_least: minimumWidth }}vw, 100vw
-        {%- endcapture -%}
+            (min-width: 1024px) {{ 100 | divided_by: section.settings.cols_desktop | times: image.aspect_ratio | at_least: minimumWidth }}vw, 100vw
+            {%- endcapture -%}
             {{
               image
               | image_url: width: image.width
